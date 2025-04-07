@@ -1,0 +1,6 @@
+{% if face_data %}
+    <p>Face Coordinates: X = {{ face_data['x'] }}, Y = {{ face_data['y'] }}</p>
+    <p>Estimated Distance: {{ face_data['distance'] }} cm</p>
+{% else %}
+    <p>No face detected.</p>
+{% endif %}
