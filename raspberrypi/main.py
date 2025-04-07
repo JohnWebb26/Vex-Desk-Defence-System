@@ -9,6 +9,7 @@ app = Flask(__name__)
 mp_face_detection = mp.solutions.face_detection
 face_detection = mp_face_detection.FaceDetection(min_detection_confidence=0.7)
 
+
 # Multi-threaded Camera Capture
 class VideoStream:
     def __init__(self):
@@ -29,7 +30,9 @@ class VideoStream:
     def get_frame(self):
         return self.frame
 
+
 video_stream = VideoStream()
+
 
 def generate_frames():
     while True:
@@ -47,22 +50,39 @@ def generate_frames():
             for detection in results.detections:
                 bboxC = detection.location_data.relative_bounding_box
                 h, w, _ = frame.shape
-                x, y, width, height = (bboxC.xmin * w, bboxC.ymin * h, bboxC.width * w, bboxC.height * h)
-                cv2.rectangle(frame, (int(x), int(y)), (int(x + width), int(y + height)), (255, 0, 0), 2)
+                x, y, width, height = (
+                    bboxC.xmin * w,
+                    bboxC.ymin * h,
+                    bboxC.width * w,
+                    bboxC.height * h,
+                )
+                cv2.rectangle(
+                    frame,
+                    (int(x), int(y)),
+                    (int(x + width), int(y + height)),
+                    (255, 0, 0),
+                    2,
+                )
 
-        _, buffer = cv2.imencode('.jpg', frame)
+        _, buffer = cv2.imencode(".jpg", frame)
         frame_bytes = buffer.tobytes()
 
-        yield (b'--frame\r\n'
-               b'Content-Type: image/jpeg\r\n\r\n' + frame_bytes + b'\r\n')
+        yield (
+            b"--frame\r\n" b"Content-Type: image/jpeg\r\n\r\n" + frame_bytes + b"\r\n"
+        )
 
-@app.route('/')
+
+@app.route("/")
 def index():
-    return render_template('index.html')
+    return render_template("index.html")
 
-@app.route('/video_feed')
+
+@app.route("/video_feed")
 def video_feed():
-    return Response(generate_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
+    return Response(
+        generate_frames(), mimetype="multipart/x-mixed-replace; boundary=frame"
+    )
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=4010, threaded=True)
