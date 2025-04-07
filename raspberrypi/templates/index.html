@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>DDS Debug</title>
+	</head>
+	<body>
+		<h1>DDS Debugging Interface </h1>
+		<h2>Live video feed</h2>
+		{% if camera_ok %}
+			<p>Camera O</p>
+			<img src="{{ url_for("video_feed")}}">
+		{% else %}
+			<div>!Camera not found!</div>
+		{% endif %}
+	</body>
+</html>
