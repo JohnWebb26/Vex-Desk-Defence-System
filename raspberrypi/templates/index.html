@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Turret Control</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <img src="{{ url_for('video_feed') }}" id="videoFeed">
+        <div class="controls">
+	    <div class="status-box">
+    		<div id="faceStatus">Initializing face detection...</div>
+	    </div>
+            <button onclick="toggleMode('sentry')">Sentry Mode</button>
+            <button onclick="toggleMode('manual')">Manual Mode</button>
+            <div id="status">Status: Active</div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
