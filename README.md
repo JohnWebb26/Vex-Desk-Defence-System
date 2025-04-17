@@ -1,6 +1,8 @@
 # Vex-Desk-Defence-System
 
-This project is a programmable rubber band launching turret using the VEX EXP kit and Python (VEXcode EXP). The launcher can rotate left/right on the X-axis and up/down on the Y-axis using the VEX controller joysticks. Pressing the A button on the controller activates the firing motor to release a rubber band.
+This project is a programmable rubber band launching turret using the VEX EXP kit and Python (VEXcode EXP). There are two versions accessible in this repo to view. The VEXbrain folder will display the content for the remote control version, and the raspberry pi folder will display the content for the facial tracking version.
+
+The rubberband launcher can rotate left/right on the X-axis and up/down on the Y-axis using the VEX controller joysticks. Pressing the A button on the controller activates the firing motor to release a rubber band.
 
 ---
 
